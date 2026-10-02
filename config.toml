@@ -1,0 +1,12 @@
+# The app ships its own stylesheet for both light and dark, so Streamlit's base theme only needs to
+# stay out of the way. Use the "Dark mode" toggle in the sidebar to switch.
+[theme]
+base = "light"
+primaryColor = "#A8864F"
+backgroundColor = "#F3F5F8"
+secondaryBackgroundColor = "#FFFFFF"
+textColor = "#0B1F3A"
+font = "sans serif"
+
+[server]
+headless = true
