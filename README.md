@@ -53,3 +53,21 @@ years of statements, too few for a reliable slope, so the tab explains this inst
 | `peerlens/charts.py` | All Plotly charts |
 | `peerlens/excel_export.py` | Live Excel workbook with formulas, dropdowns and charts |
 | `tests/test_core.py` | Edge-case tests (`python -m pytest -q`) |
+
+## Trading desk (second page)
+`pages/1_Trading_desk.py` adds a live order book and three automated strategies on a synthetic market
+for any Nifty 500 company.
+
+- **Matching engine** (`peerlens/market.py`): a price-time priority limit order book with limit and
+  market orders, cancellations, and a depth ladder — the same mechanics as an exchange book.
+- **Agents:** a market maker quoting a five-level ladder and skewing against its own inventory,
+  uninformed noise flow, a moving-average momentum bot, and a **fundamental bot whose fair value comes
+  from the composite health score** produced by the peer analysis. Sound company trading cheap, it
+  buys; weak company trading rich, it sells.
+- **Deterministic replay:** the session is generated from the seed and the date, replayed from the
+  09:15 open to the current tick, so the market looks continuously live during market hours without any
+  background process, every viewer sees the same book, and any state can be reproduced exactly.
+- The page refreshes every 10 seconds while "Live ticking" is on.
+
+Streamlit lists the main app in the sidebar under its file name (`app`). Rename `app.py` if you want a
+different label; Streamlit Cloud's "Main file path" must match whatever you choose.
